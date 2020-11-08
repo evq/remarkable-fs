@@ -358,7 +358,7 @@ class Document(Node):
     def __init__(self, root, id, metadata):
         super(Document, self).__init__(root, id, metadata)
         self.content = self.root.read_content(id)
-        if self.file_type() == "":
+        if self.file_type() in ("", "notebook"):
             raise NoContents()
         self.file_name = self.name + "." + self.file_type()
         self._size = self.root.sftp.stat(self.id + "." + self.file_type()).st_size
